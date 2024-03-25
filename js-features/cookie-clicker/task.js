@@ -4,9 +4,9 @@ const amount = document.getElementById(`clicker__counter`); //количеств
 const img = document.getElementById(`cookie`); // куда нажимать
 const speed = document.getElementById(`speed__counter`); // скорость кликов
 
-let originalWidth = 200; //изначальный размер
 
 img.onclick = countingClicks;
+let originalWidth = 200; // исходный размер изображения
 
 function countingClicks() {
   img.onclick = () => {
@@ -21,36 +21,36 @@ img.addEventListener("click", () => {
 });
 
 function resizeImage() {
-  let newWidth = img.offsetWidth; // текущий размер изображения
 
-  if (newWidth === originalWidth) {
-    originalWidth *= 2; // Удваиваем исходный размер
-    newWidth = originalWidth; // Устанавливаем новый размер
+  let originalWidth = img.offsetWidth;
+  let newWidth = originalWidth;
+
+  if(originalWidth * 2 > window.innerWidth) {
+  newWidth = (window.innerWidth - 30) * 0.5;
   } else {
-    originalWidth = originalWidth; // Обновляем исходный размер
+  newWidth = originalWidth * 2;
   }
-  img.style.width = originalWidth + "px"; // Устанавливаем новый размер изображения
-}
-
-
-
-/*function resizeImage() {
-  button.onclick = () => {
-    let newWidth = button.offsetWidth;
-  if (newWidth === originalWidth) {
-    originalWidth *= 2;
-    newWidth = originalWidth;
-  } else {
-    originalWidth = newWidth;
+  img.style.width = newWidth + 'px';
   }
-  button.style.width = newWidth + "px";
-  } 
-}
 
-button.addEventListener("click", () => {
-  clicks++;
+ 
+  getClickSpeed = (() => {
 
-  if (clicks % 2 === 0) {
-    resizeImage();
-  }
-});*/
+    let lastClick = new Date().getTime(); // время последнего клика
+    let clickSpeed = 0;
+
+    document.addEventListener("click", () => {
+        if ("click" === img) {
+            const now = new Date().getTime();
+            const timeDiff = now - lastClick;
+            const secondsSinceLastClick = timeDiff / 1000;
+            clickSpeed = 1 / secondsSinceLastClick;
+    
+            lastClick = now;
+    
+            document.querySelector('.speed-counter');
+        }
+    });
+    
+    return clickSpeed;
+    })();
