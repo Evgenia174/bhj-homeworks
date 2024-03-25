@@ -11,14 +11,17 @@ for (let i = 1; i < 10; i++) {
       if ( elementHole.className.includes( 'hole_has-mole' ) ) {
         deadCounter.textContent = Number(deadCounter.textContent) + 1;
         if (Number(deadCounter.textContent) == 10) alert("Победа!");
-        clearStatistics();
-        startNewGame();
+        resetStats();
       }
       else {
         lostCounter.textContent = Number(lostCounter.textContent) + 1;
         if (Number(lostCounter.textContent) == 5) alert("Вы проиграли!");
-        clearStatistics();
-        startNewGame();
+        resetStats();
       }
     });
+}
+
+function resetStats() {
+  deadCounter.textContent = 0;
+  lostCounter.textContent = 0;
 }
