@@ -6,36 +6,29 @@ const speed = document.getElementById(`speed__counter`); // скорость к�
 
 
 img.onclick = countingClicks;
-let originalWidth = 200; // исходный размер изображения
+let originalWidth = 200;
+
 
 function countingClicks() {
   img.onclick = () => {
     clicks++;
     amount.innerHTML = clicks;
+    resizeImage();
   };
 }
 
-img.addEventListener("click", () => {
-  clicks++;
-  resizeImage();
-});
-
 function resizeImage() {
 
-  let originalWidth = img.offsetWidth;
-  let newWidth = originalWidth;
-
-  if(originalWidth * 2 > window.innerWidth) {
-  newWidth = (window.innerWidth - 30) * 0.5;
+  if (img.width == originalWidth) {
+    img.width = 250;
   } else {
-  newWidth = originalWidth * 2;
+    img.width = originalWidth;
   }
-  img.style.width = newWidth + 'px';
   }
 
  
-  getClickSpeed = (() => {
-
+  function clickSpeed() {
+    
     let lastClick = new Date().getTime(); // время последнего клика
     let clickSpeed = 0;
 
@@ -53,4 +46,8 @@ function resizeImage() {
     });
     
     return clickSpeed;
-    })();
+    };
+  
+  
+
+    
