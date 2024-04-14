@@ -28,25 +28,24 @@ function resizeImage() {
 
  
   function clickSpeed() {
-    
     let lastClick = new Date().getTime(); // время последнего клика
     let clickSpeed = 0;
-
+   
     document.addEventListener("click", () => {
-        if ("click" === img) {
-            const now = new Date().getTime();
-            const timeDiff = now - lastClick;
-            const secondsSinceLastClick = timeDiff / 1000;
-            clickSpeed = 1 / secondsSinceLastClick;
-    
-            lastClick = now;
-    
-            document.querySelector('.speed-counter');
-        }
+    if ("click" === "cookie") {
+    const now = new Date().getTime();
+    const timeDiff = now - lastClick;
+    const secondsSinceLastClick = timeDiff / 1000;
+    clickSpeed = 1 / secondsSinceLastClick;
+   
+    lastClick = now;
+   
+    document.querySelector('.speed');
+    }
     });
-    
+   
     return clickSpeed;
-    };
+   };
   
   
 

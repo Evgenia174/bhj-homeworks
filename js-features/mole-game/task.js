@@ -9,6 +9,7 @@ function checkGame(deadMole, lostMole) {
     console.log(deadMole, lostMole);
     if (deadMole === 10) {
         alert("Вы победили!");
+        location.reload();
     } else if (lostMole === 5) {
         alert("Вы приграли!");
         location.reload();
